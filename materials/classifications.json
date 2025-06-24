@@ -1,0 +1,80 @@
+{
+  "type": {
+    "description": "Indicates the structural or technical type of the resource.",
+    "values": [
+      "tool",
+      "project",
+      "community",
+      "documentation",
+      "contest",
+      "tutorial",
+      "PDK"
+    ]
+  },
+  "category": {
+    "description": "Classifies the functional purpose or primary use of the resource.",
+    "values": [
+      "EDA",
+      "learning",
+      "prototyping",
+      "production",
+      "automation",
+      "tapeout",
+      "workflow",
+      "collaboration",
+      "education",
+      "simulation",
+      "measurement"
+    ]
+  },
+  "domain": {
+    "description": "Describes the technical or thematic domain covered by the resource.",
+    "values": [
+      "analog",
+      "digital",
+      "mixed-signal",
+      "RF",
+      "layout",
+      "synthesis",
+      "verification",
+      "system-on-chip",
+      "hardware security",
+      "microelectronics",
+      "semiconductor physics",
+      "standard cell design"
+    ]
+  },
+  "discipline": {
+    "description": "Academic or industrial discipline associated with the resource.",
+    "values": [
+      "electrical engineering",
+      "computer engineering",
+      "computer science",
+      "physics",
+      "AI engineering",
+      "cybersecurity",
+      "embedded systems",
+      "semiconductor design"
+    ]
+  },
+  "workflow_stage": {
+    "description": "Represents the specific stage of the IC design flow where the resource is applied (if applicable).",
+    "values": [
+      "specification",
+      "schematic capture",
+      "simulation",
+      "RTL synthesis",
+      "logic synthesis",
+      "floorplanning",
+      "placement",
+      "routing",
+      "DRC",
+      "LVS",
+      "extraction",
+      "GDSII generation",
+      "fabrication",
+      "testing",
+      "measurement"
+    ]
+    }
+}
