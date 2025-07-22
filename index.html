@@ -1,0 +1,132 @@
+<html>
+    <body>
+        <h1>OCDCpro Teach-the-Teacher</h1>
+        
+        <div id="tableContainer"></div>
+        
+        <script>
+            // Function to load JSON data from file
+            async function loadCollectionData() {
+                try {
+                    const response = await fetch('materials/collection.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const collectionData = await response.json();
+                    return collectionData;
+                } catch (error) {
+                    console.error('Error loading collection data:', error);
+                    return [];
+                }
+            }
+
+            // Function to create and display the table
+            async function displayCollectionTable() {
+                const container = document.getElementById('tableContainer');
+                
+                // Load data from the JSON file
+                const collectionData = await loadCollectionData();
+                
+                if (collectionData.length === 0) {
+                    container.innerHTML = '<p>Error loading collection data. Please check the console for details.</p>';
+                    return;
+                }
+                
+                // Create table element
+                const table = document.createElement('table');
+                table.style.borderCollapse = 'collapse';
+                table.style.width = '1024px';
+                table.style.marginTop = '20px';
+                
+                // Create table header
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                const headers = ['Title', 'Type', 'Description', 'Categories', 'Domains', 'URL'];
+                
+                headers.forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.textContent = headerText;
+                    th.style.border = '1px solid #ddd';
+                    th.style.padding = '8px';
+                    th.style.backgroundColor = '#f2f2f2';
+                    th.style.textAlign = 'left';
+                    headerRow.appendChild(th);
+                });
+                
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+                
+                // Create table body
+                const tbody = document.createElement('tbody');
+                
+                collectionData.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    // Title
+                    const titleCell = document.createElement('td');
+                    titleCell.textContent = item.title;
+                    titleCell.style.border = '1px solid #ddd';
+                    titleCell.style.padding = '8px';
+                    titleCell.style.fontWeight = 'bold';
+                    row.appendChild(titleCell);
+                    
+                    // Type
+                    const typeCell = document.createElement('td');
+                    typeCell.textContent = item.type;
+                    typeCell.style.border = '1px solid #ddd';
+                    typeCell.style.padding = '8px';
+                    row.appendChild(typeCell);
+                    
+                    // Description (truncated for readability)
+                    const descCell = document.createElement('td');
+                    descCell.textContent = item.description;
+                    descCell.style.border = '1px solid #ddd';
+                    descCell.style.padding = '8px';
+                    descCell.style.maxWidth = '300px';
+                    row.appendChild(descCell);
+                    
+                    // Categories
+                    const categoryCell = document.createElement('td');
+                    categoryCell.textContent = item.category.join(', ');
+                    categoryCell.style.border = '1px solid #ddd';
+                    categoryCell.style.padding = '8px';
+                    row.appendChild(categoryCell);
+                    
+                    // Domains
+                    const domainCell = document.createElement('td');
+                    domainCell.textContent = item.domain.join(', ');
+                    domainCell.style.border = '1px solid #ddd';
+                    domainCell.style.padding = '8px';
+                    row.appendChild(domainCell);
+                    
+                    // URL (as clickable link)
+                    const urlCell = document.createElement('td');
+                    const link = document.createElement('a');
+                    link.href = item.url;
+                    link.textContent = 'Link';
+                    link.target = '_blank';
+                    link.style.color = '#0066cc';
+                    urlCell.appendChild(link);
+                    urlCell.style.border = '1px solid #ddd';
+                    urlCell.style.padding = '8px';
+                    row.appendChild(urlCell);
+                    
+                    tbody.appendChild(row);
+                });
+                
+                table.appendChild(tbody);
+                container.appendChild(table);
+                
+                // Add a title above the table
+                const title = document.createElement('h2');
+                title.textContent = 'Collection Data Table';
+                title.style.marginTop = '20px';
+                container.insertBefore(title, table);
+            }
+            
+            // Display the table when the page loads
+            window.onload = displayCollectionTable;
+        </script>
+
+    </body>
+</html>
