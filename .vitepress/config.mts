@@ -101,6 +101,11 @@ export default defineConfig({
     'public/slides.md'
   ],
   
+  // Set base path dynamically based on environment variable
+  // Usage: BASE_PATH=/my-repo/ npm run docs:build
+  // Or in package.json: "docs:build:prod": "BASE_PATH=/ocdcpro-ttt-portal/ vitepress build"
+  base: process.env.BASE_PATH || '/',
+  
   title: "OCDCpro Teach-the-Teacher Portal",
   description: "A VitePress Site",
   themeConfig: {
@@ -109,7 +114,6 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
       { text: 'Overview Slides', link: '/overview-slides/' }
     ],
 
@@ -126,13 +130,6 @@ export default defineConfig({
         }
       ],
       '/': [
-        {
-          text: 'Examples',
-          items: [
-            { text: 'Markdown Examples', link: '/markdown-examples' },
-            { text: 'Runtime API Examples', link: '/api-examples' }
-          ]
-        }
       ]
     },
 

@@ -5,6 +5,7 @@
   "scripts": {
     "site:dev": "vitepress dev",
     "site:build": "vitepress build",
+    "site:build:prod": "BASE_PATH=/ocdcpro-ttt-portal/ vitepress build",
     "site:preview": "vitepress preview"
   },
   "dependencies": {
